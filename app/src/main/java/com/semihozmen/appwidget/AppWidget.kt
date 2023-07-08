@@ -26,6 +26,37 @@ class AppWidget : AppWidgetProvider() {
 
     override fun onEnabled(context: Context) {
         // Enter relevant functionality for when the first widget is created
+
+        val appWidgetManager = AppWidgetManager.getInstance(context)
+
+        val views = RemoteViews(context.getPackageName(),
+            R.layout.app_widget)
+
+        val audioManager: AudioManager = context.getSystemService(AudioManager::class.java)
+
+
+        when(audioManager.ringerMode){
+            AudioManager.RINGER_MODE_NORMAL ->{
+                //views.setTextViewText(R.id.appwidget_text, "Kapat")
+                views.setImageViewResource(R.id.imageView,R.drawable.baseline_volume_up_24)
+                appWidgetManager.updateAppWidget(
+                    ComponentName(context,AppWidget::class.java),views)
+            }
+
+            AudioManager.RINGER_MODE_SILENT ->{
+                //views.setTextViewText(R.id.appwidget_text, "Aç")
+                views.setImageViewResource(R.id.imageView,R.drawable.baseline_volume_off_24)
+                appWidgetManager.updateAppWidget(
+                    ComponentName(context,AppWidget::class.java),views)
+            }
+
+            AudioManager.RINGER_MODE_VIBRATE ->{
+                // views.setTextViewText(R.id.appwidget_text, "Aç")
+                views.setImageViewResource(R.id.imageView,R.drawable.baseline_volume_off_24)
+                appWidgetManager.updateAppWidget(
+                    ComponentName(context,AppWidget::class.java),views)
+            }
+        }
     }
 
     override fun onDisabled(context: Context) {
@@ -45,7 +76,7 @@ internal fun updateAppWidget(
         0,
         receiver,
         PendingIntent.FLAG_IMMUTABLE
-    );
+    )
 
     val views = RemoteViews(context.getPackageName(),
         R.layout.app_widget)
