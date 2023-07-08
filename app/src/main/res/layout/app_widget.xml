@@ -2,7 +2,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/Widget.AppWidget.AppWidget.Container"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:theme="@style/Theme.AppWidget.AppWidgetContainer">
 
     <ImageView
         android:id="@+id/imageView"
