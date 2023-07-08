@@ -23,21 +23,24 @@ class SoundReceiver  : BroadcastReceiver () {
             when(audioManager.ringerMode){
             AudioManager.RINGER_MODE_NORMAL ->{
                 audioManager.ringerMode = AudioManager.RINGER_MODE_VIBRATE
-                views.setTextViewText(R.id.appwidget_text, "Aç")
+                views.setImageViewResource(R.id.imageView,R.drawable.baseline_volume_off_24)
+               // views.setTextViewText(R.id.appwidget_text, "Aç")
                 appWidgetManager.updateAppWidget(
                     ComponentName(context,AppWidget::class.java),views)
             }
 
             AudioManager.RINGER_MODE_SILENT ->{
                 audioManager.ringerMode = AudioManager.RINGER_MODE_VIBRATE
-                views.setTextViewText(R.id.appwidget_text, "Kapat")
+                views.setImageViewResource(R.id.imageView,R.drawable.baseline_volume_off_24)
+               // views.setTextViewText(R.id.appwidget_text, "Kapat")
                 appWidgetManager.updateAppWidget(
                     ComponentName(context,AppWidget::class.java),views)
             }
 
                 AudioManager.RINGER_MODE_VIBRATE ->{
                     audioManager.ringerMode = AudioManager.RINGER_MODE_NORMAL
-                    views.setTextViewText(R.id.appwidget_text, "Kapat")
+                    views.setImageViewResource(R.id.imageView,R.drawable.baseline_volume_up_24)
+                   // views.setTextViewText(R.id.appwidget_text, "Kapat")
                     appWidgetManager.updateAppWidget(
                         ComponentName(context,AppWidget::class.java),views)
                 }

@@ -55,24 +55,27 @@ internal fun updateAppWidget(
 
     when(audioManager.ringerMode){
         AudioManager.RINGER_MODE_NORMAL ->{
-            views.setTextViewText(R.id.appwidget_text, "Kapat")
+            //views.setTextViewText(R.id.appwidget_text, "Kapat")
+            views.setImageViewResource(R.id.imageView,R.drawable.baseline_volume_off_24)
             appWidgetManager.updateAppWidget(
                 ComponentName(context,AppWidget::class.java),views)
         }
 
         AudioManager.RINGER_MODE_SILENT ->{
-            views.setTextViewText(R.id.appwidget_text, "Aç")
+            //views.setTextViewText(R.id.appwidget_text, "Aç")
+            views.setImageViewResource(R.id.imageView,R.drawable.baseline_volume_off_24)
             appWidgetManager.updateAppWidget(
                 ComponentName(context,AppWidget::class.java),views)
         }
 
         AudioManager.RINGER_MODE_VIBRATE ->{
-            views.setTextViewText(R.id.appwidget_text, "Aç")
+           // views.setTextViewText(R.id.appwidget_text, "Aç")
+            views.setImageViewResource(R.id.imageView,R.drawable.baseline_volume_up_24)
             appWidgetManager.updateAppWidget(
                 ComponentName(context,AppWidget::class.java),views)
         }
     }
-    views.setOnClickPendingIntent(R.id.appwidget_text, pendingIntent);
+    views.setOnClickPendingIntent(R.id.imageView, pendingIntent);
 
     // Instruct the widget manager to update the widget
     appWidgetManager.updateAppWidget(appWidgetId, views)
