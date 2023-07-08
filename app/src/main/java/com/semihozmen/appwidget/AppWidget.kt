@@ -3,8 +3,10 @@ package com.semihozmen.appwidget
 import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.media.AudioManager
 import android.widget.RemoteViews
 
 /**
@@ -47,6 +49,29 @@ internal fun updateAppWidget(
 
     val views = RemoteViews(context.getPackageName(),
         R.layout.app_widget)
+
+    val audioManager: AudioManager = context.getSystemService(AudioManager::class.java)
+
+
+    when(audioManager.ringerMode){
+        AudioManager.RINGER_MODE_NORMAL ->{
+            views.setTextViewText(R.id.appwidget_text, "Kapat")
+            appWidgetManager.updateAppWidget(
+                ComponentName(context,AppWidget::class.java),views)
+        }
+
+        AudioManager.RINGER_MODE_SILENT ->{
+            views.setTextViewText(R.id.appwidget_text, "Aç")
+            appWidgetManager.updateAppWidget(
+                ComponentName(context,AppWidget::class.java),views)
+        }
+
+        AudioManager.RINGER_MODE_VIBRATE ->{
+            views.setTextViewText(R.id.appwidget_text, "Aç")
+            appWidgetManager.updateAppWidget(
+                ComponentName(context,AppWidget::class.java),views)
+        }
+    }
     views.setOnClickPendingIntent(R.id.appwidget_text, pendingIntent);
 
     // Instruct the widget manager to update the widget

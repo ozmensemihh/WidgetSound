@@ -17,9 +17,8 @@ class SoundReceiver  : BroadcastReceiver () {
 
         val views = RemoteViews(context!!.packageName, R.layout.app_widget)
         val audioManager:AudioManager = context.getSystemService(AudioManager::class.java)
-        val appWidgetManager = AppWidgetManager.getInstance(context);
-        appWidgetManager.updateAppWidget(
-            ComponentName(context,AppWidget::class.java),views)
+        val appWidgetManager = AppWidgetManager.getInstance(context)
+
 
             when(audioManager.ringerMode){
             AudioManager.RINGER_MODE_NORMAL ->{
